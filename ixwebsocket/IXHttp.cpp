@@ -145,7 +145,7 @@ namespace ix
                     return std::make_tuple(
                         false, "Error parsing HTTP Header 'Content-Length'", httpRequest);
                 }
-                contentLength = val;
+                contentLength = static_cast<int>(val);
             }
             if (contentLength < 0)
             {
