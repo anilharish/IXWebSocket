@@ -14,14 +14,14 @@ namespace ix
                                             uint32_t maxWaitBetweenReconnectionRetries,
                                             uint32_t minWaitBetweenReconnectionRetries)
     {
-        // It's easy with a power function to go beyond 2^32, and then 
+        // It's easy with a power function to go beyond 2^32, and then
         // have unexpected results, so prepare for that
         const uint32_t maxRetryCountWithoutOverflow = 26;
 
         uint32_t waitTime = 0;
         if (retryCount < maxRetryCountWithoutOverflow)
         {
-            waitTime = std::pow(2, retryCount) * 100;
+            waitTime = static_cast<uint32_t>(std::pow(2, retryCount) * 100);
         }
 
         if (waitTime < minWaitBetweenReconnectionRetries)
